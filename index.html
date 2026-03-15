@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Made Simple · Book 2 · Ready-to-Copy Prompts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:       #0E1C36;
+      --navy-card:  #162035;
+      --navy-inner: #0A1526;
+      --blue:       #2563EB;
+      --blue-light: #3B82F6;
+      --glow:       #818CF8;
+      --orange:     #F97316;
+      --orange-dim: #C2570A;
+      --white:      #F1F5F9;
+      --muted:      #94A3B8;
+      --border:     #1E3050;
+      --green:      #22C55E;
+      --green-dim:  #15803D;
+      --red:        #EF4444;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── EKRAN LOGOWANIA ── */
+    #ekran-logowania {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-box {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+
+    .login-badge {
+      display: inline-block;
+      background: rgba(249,115,22,0.1);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(249,115,22,0.3);
+      margin-bottom: 20px;
+    }
+
+    .login-box h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-box p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .login-box p strong {
+      color: var(--white);
+    }
+
+    .kod-input {
+      width: 100%;
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      font-family: 'Outfit', monospace;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .kod-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+
+    .kod-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.2);
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-8px); }
+      75%      { transform: translateX(8px); }
+    }
+
+    .btn-odblokuj {
+      width: 100%;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+      margin-bottom: 16px;
+    }
+
+    .btn-odblokuj:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 20px rgba(37,99,235,0.4);
+    }
+
+    .btn-odblokuj:active { transform: scale(0.98); }
+
+    .error-msg {
+      font-size: 0.85rem;
+      color: var(--red);
+      min-height: 20px;
+      margin-bottom: 8px;
+    }
+
+    .login-hint {
+      font-size: 0.78rem;
+      color: #475569;
+      margin-top: 16px;
+    }
+
+    /* ── GŁÓWNA TREŚĆ (ukryta domyślnie) ── */
+    #tresc {
+      display: none;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 56px 24px 44px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+
+    .header-glow {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .tom-badge {
+      display: inline-block;
+      background: var(--orange-dim);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--orange-dim);
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header .subtitle {
+      font-size: 1.3rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .header-tip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.12);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      color: #93C5FD;
+      max-width: 520px;
+    }
+
+    /* ── NAW ── */
+    .chapter-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,28,54,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .chapter-nav::-webkit-scrollbar { display: none; }
+
+    .nav-item {
+      flex-shrink: 0;
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-item:hover { color: var(--white); }
+    .nav-item.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* ── MAIN ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .chapter { padding-top: 48px; }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-top: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chapter-info h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .chapter-info p { font-size: 0.82rem; color: var(--muted); }
+
+    .komenda-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .komenda-card:hover {
+      border-color: rgba(37,99,235,0.4);
+      box-shadow: 0 4px 24px rgba(37,99,235,0.08);
+    }
+
+    .komenda-head {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px 10px;
+      gap: 12px;
+    }
+
+    .komenda-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .komenda-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--orange);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.2);
+      border-radius: 5px;
+      padding: 2px 8px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .komenda-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .komenda-body { padding: 0 18px 16px; }
+
+    .komenda-tekst {
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: #CBD5E1;
+      white-space: pre-wrap;
+      margin-bottom: 12px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .komenda-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-kopiuj {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-kopiuj:hover { background: var(--blue-light); box-shadow: 0 0 16px rgba(37,99,235,0.4); }
+    .btn-kopiuj:active { transform: scale(0.96); }
+    .btn-kopiuj.success { background: var(--green-dim); }
+    .btn-kopiuj.error   { background: #991B1B; }
+
+    .copy-hint { font-size: 0.78rem; color: var(--muted); }
+
+    .progress-bar {
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin-bottom: 32px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 5px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--glow));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-label { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+    .progress-count { font-size: 0.78rem; color: #93C5FD; font-weight: 600; white-space: nowrap; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    .footer-tomy {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-tom-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .footer-tom-link.current {
+      background: rgba(249,115,22,0.15);
+      border: 1px solid rgba(249,115,22,0.3);
+      color: var(--orange);
+      cursor: default;
+    }
+
+    .footer-tom-link.coming {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-tom-link.coming:hover { border-color: rgba(37,99,235,0.3); color: #93C5FD; }
+    .footer-copy { font-size: 0.78rem; color: #475569; }
+
+    @media (max-width: 540px) {
+      header { padding: 40px 16px 32px; }
+      .login-box { padding: 36px 24px; }
+      .btn-kopiuj { width: 100%; justify-content: center; }
+      .komenda-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ ACCESS SCREEN ═══════════════════════════════════════════════════ -->
+<div id="ekran-logowania">
+  <div class="login-box">
+    <div class="login-badge">Book 2 · AI Made Simple</div>
+    <h1>Access code</h1>
+    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 2</strong></p>
+    <input
+      type="text"
+      id="kod-input"
+      class="kod-input"
+      placeholder="BOOK2-XXXX"
+      maxlength="10"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <div class="error-msg" id="error-msg"></div>
+    <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
+    <p class="login-hint">Your code is on the last page of the e-book</p>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
+<div id="tresc">
+
+<header>
+  <div class="header-glow"></div>
+  <div class="tom-badge">Book 2 · AI Made Simple</div>
+  <div class="header-series">AI Made Simple</div>
+  <h1>Book 2: Organisation &amp; Planning.<br>Reclaim 5 hours a week.</h1>
+  <div class="header-tagline">How to stop juggling everything in your head — no tech knowledge required.</div>
+  <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book2.aidorzeczy.com</div>
+  <div class="header-tip">
+    <span class="icon">💡</span>
+    Click <strong>Copy prompt</strong>, then paste it into ChatGPT or Claude
+  </div>
+</header>
+
+<nav class="chapter-nav" id="chapNav">
+  <a class="nav-item active" href="#r1" onclick="setActive(this)">Ch. 1 — Kitchen</a>
+  <a class="nav-item" href="#r2" onclick="setActive(this)">Ch. 2 — Meal Plan</a>
+  <a class="nav-item" href="#r3" onclick="setActive(this)">Ch. 3 — Schedule</a>
+  <a class="nav-item" href="#r4" onclick="setActive(this)">Ch. 4 — Travel</a>
+  <a class="nav-item" href="#r5" onclick="setActive(this)">Ch. 5 — To-Do</a>
+  <div class="nav-sep"></div>
+  <a class="nav-item" href="#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
+  <a class="nav-item" href="#advanced" onclick="setActive(this)">Advanced</a>
+</nav>
+
+<main>
+
+  <div class="progress-bar">
+    <span class="progress-label">Prompts copied:</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 10</span>
+  </div>
+
+  <!-- ═══ CHAPTER 1 ═══ -->
+  <section class="chapter" id="r1">
+    <div class="chapter-header">
+      <div class="chapter-icon">🍳</div>
+      <div class="chapter-info">
+        <h2>Chapter 1: Your Kitchen Assistant</h2>
+        <p>Prompt No. 1 · Get a recipe built around whatever you already have in the fridge</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 1</span>
+          <span class="komenda-title">Recipe from what I have — dinner sorted in 30 minutes</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k1">Act as an experienced home cook.
+
+Based on the ingredients I have at home, suggest a specific recipe for tonight's dinner.
+
+Keep it simple — maximum 30 minutes from start to plate.
+
+Give me: the name of the dish, a list of ingredients with quantities, and numbered cooking steps.
+
+Ingredients I have: [List what's in your fridge or cupboards, e.g. chicken breast, rice, onion, garlic, tinned tomatoes]
+
+Number of people: [e.g. 2 / family of 4]
+
+What we don't eat or want to avoid: [e.g. no spicy food / no dairy / we don't like fish — or type: no restrictions]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k1', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 2 ═══ -->
+  <section class="chapter" id="r2">
+    <div class="chapter-header">
+      <div class="chapter-icon">📅</div>
+      <div class="chapter-info">
+        <h2>Chapter 2: The Weekly Meal Planner</h2>
+        <p>Prompt No. 2 · 7-day meal plan plus a ready-to-go shopping list — all in one go</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 2</span>
+          <span class="komenda-title">Weekly meal plan with shopping list</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k2">Act as a nutritionist and experienced home cook.
+
+Create a 7-day meal plan for me (Monday through Sunday).
+
+For each day, give me: breakfast, lunch, and dinner.
+
+Keep the meals simple, quick to prepare, and genuinely enjoyable.
+
+After the meal plan, add a combined shopping list for the whole week, grouped by category (vegetables, meat, dairy, dry goods).
+
+Number of people: [e.g. 2 adults / family of 4 with children]
+
+Approximate weekly food budget: [e.g. $100 / $150 / flexible]
+
+What we don't eat or want to avoid: [e.g. no pork / no gluten / we don't like fish — or: no restrictions]
+
+Cuisine style we enjoy: [e.g. Italian, Asian, Mediterranean — or: no preference]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k2', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 3 ═══ -->
+  <section class="chapter" id="r3">
+    <div class="chapter-header">
+      <div class="chapter-icon">🕐</div>
+      <div class="chapter-info">
+        <h2>Chapter 3: Your Daily Schedule — Sorted</h2>
+        <p>Prompt No. 3 · Turn a chaotic task list into a realistic hour-by-hour plan</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 3</span>
+          <span class="komenda-title">Daily schedule from tasks in any order</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k3">Act as a highly efficient personal assistant.
+
+Create a detailed schedule for my day based on the tasks below.
+
+For each task, give me a suggested start time and estimated duration.
+
+Build in breaks and realistic travel time between locations.
+
+Make sure the plan is actually achievable — don't cram everything in.
+
+Time I wake up: [e.g. 7:00 am]
+
+Time I want to wrap everything up by: [e.g. 8:00 pm]
+
+My tasks for today (write them in any order, as messily as you like):
+[e.g. drop the car at the garage, call the doctor's surgery, send an important email, do the grocery shopping, pick up the kids from school at 3:30 pm, make dinner]
+
+Any fixed commitments or blocks I can't move?
+[e.g. work meeting 10:00–11:30 am / or: none, I'm flexible today]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k3', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 4 ═══ -->
+  <section class="chapter" id="r4">
+    <div class="chapter-header">
+      <div class="chapter-icon">✈️</div>
+      <div class="chapter-info">
+        <h2>Chapter 4: Your Holiday &amp; Trip Planner</h2>
+        <p>Prompt No. 4 · Full itinerary, packing list, and insider tips — in one conversation</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 4</span>
+          <span class="komenda-title">Complete trip plan with packing list</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k4">Act as an experienced travel guide and trip organiser.
+
+Help me plan a trip. Please prepare:
+
+1. A day-by-day itinerary with suggested times
+
+2. The top 5 must-see highlights — with a brief note on each
+
+3. A packing list tailored to the season and type of trip
+
+4. Three practical tips that most tourists miss
+
+Destination: [City, region, or country, e.g. Lisbon / Tuscany / Japan]
+
+Length of trip: [e.g. 3 days / one week]
+
+Who's travelling: [e.g. solo / couple / family with kids aged 6 and 10]
+
+What we enjoy: [e.g. history and museums / active outdoor days / beach and relaxation / great food and local restaurants / wandering through old town streets]
+
+Budget level: [e.g. budget-conscious / mid-range / no restrictions]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k4', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 5 ═══ -->
+  <section class="chapter" id="r5">
+    <div class="chapter-header">
+      <div class="chapter-icon">📋</div>
+      <div class="chapter-info">
+        <h2>Chapter 5: Get on Top of Your To-Do List</h2>
+        <p>Prompt No. 5 · Priority table with a concrete next step for every item</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 5</span>
+          <span class="komenda-title">Priority table with next steps for everything on your mind</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k5">Act as a highly organised personal assistant.
+
+Help me get on top of everything I need to deal with.
+
+Based on my list, create:
+
+1. A priority table: Urgent & Important / Important but not urgent / Can wait
+
+2. For each item: one concrete "next step" — the single specific action I need to take to move it forward
+
+3. If anything has a hard deadline, flag it clearly with the date
+
+Here's everything on my mind right now (write as messily as you like):
+[e.g. book a dentist appointment, renew car insurance, call back my sister, order new glasses, file my tax return by end of month, fix the leaky kitchen tap]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k5', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHEAT SHEET ═══ -->
+  <section class="chapter" id="cheatsheet">
+    <div class="chapter-header">
+      <div class="chapter-icon">📌</div>
+      <div class="chapter-info">
+        <h2>Cheat Sheet — All Prompts at a Glance</h2>
+        <p>Prompts No. 1–5 in short form · Use the full chapter versions for best results</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-body" style="padding:20px 24px;">
+        <p style="color:var(--muted);font-size:0.88rem;margin-bottom:12px;">These are condensed versions. The full prompts in each chapter give the AI more context and produce better results.</p>
+        <p style="color:var(--white);font-size:0.9rem;margin:0;">
+          <strong>No. 1</strong> — Fridge recipe → Ch. 1 &nbsp;|&nbsp;
+          <strong>No. 2</strong> — Meal plan → Ch. 2 &nbsp;|&nbsp;
+          <strong>No. 3</strong> — Daily schedule → Ch. 3 &nbsp;|&nbsp;
+          <strong>No. 4</strong> — Trip planner → Ch. 4 &nbsp;|&nbsp;
+          <strong>No. 5</strong> — Priority list → Ch. 5
+        </p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book2.aidorzeczy.com" style="color:var(--orange);">book2.aidorzeczy.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ADVANCED ═══ -->
+  <section class="chapter" id="advanced">
+    <div class="chapter-header">
+      <div class="chapter-icon">🚀</div>
+      <div class="chapter-info">
+        <h2>Advanced Prompts — Appendix 2</h2>
+        <p>Prompts No. 6–10 · More powerful versions for trickier situations</p>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 6</span>
+          <span class="komenda-title">Dinner from almost nothing — last-minute, near-empty fridge</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k6">Act as a genius improvising chef.
+
+I have almost nothing left in the fridge and very little time.
+
+Suggest something quick and genuinely edible — maximum 15 minutes.
+
+If I'm missing something, tell me the best substitute.
+
+What I have: [Even a very short list works, e.g. eggs, pasta, butter, garlic]
+Time available: [e.g. 10–15 minutes]
+Number of people: [e.g. 2]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k6', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 7</span>
+          <span class="komenda-title">Meal plan for a picky eater</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k7">Act as a paediatric nutritionist with plenty of real-world experience.
+
+Create a weekly meal plan for a picky eater.
+
+Meals should be tasty, nutritious, and take no more than 20 minutes to prepare.
+
+Introduce anything new very gently — the goal is meals they'll actually eat without a fight.
+
+Child's age: [e.g. 7 years old]
+What they like: [e.g. pasta, chips, chicken, apples, yoghurt]
+What they absolutely refuse: [e.g. fish, anything green, soup]
+Weekly food budget: [e.g. $60 / £40]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k7', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 8</span>
+          <span class="komenda-title">Emergency reschedule after the day falls apart</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k8">Act as a calm, practical crisis assistant.
+
+My day has just been derailed by something unexpected.
+
+Help me rebuild a realistic plan for the rest of the day, salvaging as much of the original schedule as possible.
+
+What happened: [Brief description, e.g. my child is sick and I need to stay home / the car broke down and I've lost transport for the day]
+Current time: [e.g. 11:00 am]
+What absolutely must still happen today: [e.g. pick up a prescription, send an urgent email]
+The rest of my original plan: [List what you had planned]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k8', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 9</span>
+          <span class="komenda-title">Last-minute weekend getaway</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k9">Act as an expert in spontaneous travel.
+
+We want to get away this weekend — leaving tomorrow.
+
+Suggest a specific destination within about 3 hours of our city and give us a ready-made 2-day plan.
+
+Include: where to stay (budget and comfortable options), where to eat (at least one spot with great local food), what to see and do, and what to throw in a bag.
+
+Our city: [e.g. London / Berlin / New York / Sydney]
+Who's coming: [e.g. couple / family with children]
+What we enjoy: [e.g. nature and hiking / culture and history / relaxation]
+Budget: [e.g. budget-friendly / mid-range]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k9', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 10</span>
+          <span class="komenda-title">The big monthly reset — plan the whole month at once</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k10">Act as a personal life planner.
+
+Help me plan the month ahead.
+
+Based on my information, create:
+
+1. A prioritised list of everything I need to get done this month
+
+2. A loose week-by-week skeleton (which week for what)
+
+3. The 3 most important things I absolutely cannot let slip through the cracks
+
+Month: [e.g. October 2026]
+Key dates and deadlines: [e.g. dentist on the 8th, sister's birthday on the 22nd, quarterly tax payment due by the 15th]
+Bigger projects or household tasks this month:
+[e.g. redecorate the spare room, organise a birthday party for the kids, sort out pension paperwork]
+What I want to protect for rest and myself:
+[e.g. gym twice a week, one evening per fortnight with no plans]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k10', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-tomy">
+    <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com">Book 1 — Communication &amp; Difficult Emails</a>
+    <a class="footer-tom-link current" href="#">★ Book 2 — you are here</a>
+    <a class="footer-tom-link coming" href="https://book3.aidorzeczy.com">Book 3 — Household Budget</a>
+  </div>
+  <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book2.aidorzeczy.com</p>
+</footer>
+
+</div><!-- koniec #tresc -->
+
+<script>
+  // ═══════════════════════════════════════════════════════
+  // ZMIEŃ TEN KOD NA WŁAŚCIWY PRZED PUBLIKACJĄ
+  // Enter this on the last page of Book 2 as well
+  // ═══════════════════════════════════════════════════════
+  const POPRAWNY_KOD = 'BOOK2-MN3H';
+
+  const KLUCZ_SESJI = 'dostep_book2_en';
+
+  function sprawdzKod() {
+    const input = document.getElementById('kod-input');
+    const errorMsg = document.getElementById('error-msg');
+    const wpisany = input.value.trim().toUpperCase();
+
+    if (wpisany === POPRAWNY_KOD) {
+      // Zapisz w sessionStorage — dostęp trwa do zamknięcia karty
+      sessionStorage.setItem(KLUCZ_SESJI, '1');
+      odblokuj();
+    } else {
+      input.classList.add('error');
+      errorMsg.textContent = 'Incorrect code. Check the last page of your e-book.';
+      setTimeout(() => input.classList.remove('error'), 600);
+    }
+  }
+
+  function odblokuj() {
+    document.getElementById('ekran-logowania').style.display = 'none';
+    document.getElementById('tresc').style.display = 'block';
+  }
+
+  // Sprawdź czy już odblokowane w tej sesji
+  if (sessionStorage.getItem(KLUCZ_SESJI) === '1') {
+    odblokuj();
+  }
+
+  // Enter w polu kodu
+  document.getElementById('kod-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sprawdzKod();
+  });
+
+  // ── Kopiowanie ──────────────────────────────────────────
+  const TOTAL = 10;
+  const copied = new Set();
+
+  function updateProgress() {
+    const n = copied.size;
+    document.getElementById('progressCount').textContent = n + ' / ' + TOTAL;
+    document.getElementById('progressFill').style.width = (n / TOTAL * 100) + '%';
+  }
+
+  function kopiuj(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const tekst = el.innerText;
+    const resetBtn = () => { btn.textContent = '📋 Copy prompt'; btn.classList.remove('success','error'); };
+
+    if (!navigator.clipboard) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = tekst; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        btn.textContent = '✓ Copied!'; btn.classList.add('success');
+        copied.add(id); updateProgress(); setTimeout(resetBtn, 2500);
+      } catch { btn.textContent='⚠ Error'; btn.classList.add('error'); setTimeout(resetBtn,3500); }
+      return;
+    }
+
+    navigator.clipboard.writeText(tekst)
+      .then(() => { btn.textContent='✓ Copied!'; btn.classList.add('success'); copied.add(id); updateProgress(); setTimeout(resetBtn,2500); })
+      .catch(() => { btn.textContent='⚠ Copy failed'; btn.classList.add('error'); setTimeout(resetBtn,3000); });
+  }
+
+  function setActive(el) {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const sections = document.querySelectorAll('.chapter');
+  const navItems = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(n => n.classList.toggle('active', n.getAttribute('href')==='#'+id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
