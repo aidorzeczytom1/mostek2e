@@ -965,18 +965,22 @@ What I want to protect for rest and myself:
   // ZMIEŃ TEN KOD NA WŁAŚCIWY PRZED PUBLIKACJĄ
   // Enter this on the last page of Book 2 as well
   // ═══════════════════════════════════════════════════════
-  const POPRAWNY_KOD = 'BOOK2-MN3H';
+  // Akceptowane kody (case-insensitive, prefiks opcjonalny)
+  const SUFIKSY = ['MN3H', 'XXXX'];
+  const KLUCZ = 'dostep_book2_en';
 
-  const KLUCZ_SESJI = 'dostep_book2_en';
+  function kodPoprawny(wpisany) {
+    const u = wpisany.trim().toUpperCase();
+    return SUFIKSY.some(s => u === s || u === 'BOOK2-' + s);
+  }
 
   function sprawdzKod() {
     const input = document.getElementById('kod-input');
     const errorMsg = document.getElementById('error-msg');
-    const wpisany = input.value.trim().toUpperCase();
 
-    if (wpisany === POPRAWNY_KOD) {
-      // Zapisz w sessionStorage — dostęp trwa do zamknięcia karty
-      sessionStorage.setItem(KLUCZ_SESJI, '1');
+    if (kodPoprawny(input.value)) {
+      // Persystencja — localStorage zachowuje dostęp po zamknięciu przeglądarki
+      localStorage.setItem(KLUCZ, '1');
       odblokuj();
     } else {
       input.classList.add('error');
@@ -990,8 +994,8 @@ What I want to protect for rest and myself:
     document.getElementById('tresc').style.display = 'block';
   }
 
-  // Sprawdź czy już odblokowane w tej sesji
-  if (sessionStorage.getItem(KLUCZ_SESJI) === '1') {
+  // Sprawdź persystentny dostęp (localStorage — przeżywa zamknięcie przeglądarki)
+  if (localStorage.getItem(KLUCZ) === '1') {
     odblokuj();
   }
 
