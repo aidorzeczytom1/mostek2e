@@ -52,9 +52,11 @@
       z-index: 999;
       background: var(--navy);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 24px;
+      overflow-y: auto;
     }
 
     .login-box {
@@ -183,6 +185,73 @@
       font-size: 0.78rem;
       color: #475569;
       margin-top: 16px;
+    }
+
+    .upsell-block {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .upsell-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 5px;
+      padding: 2px 9px;
+      margin-bottom: 10px;
+    }
+
+    .upsell-block p {
+      font-size: 0.88rem;
+      color: #CBD5E1;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .upsell-block p strong {
+      color: var(--white);
+    }
+
+    .btn-amazon {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-amazon:hover {
+      background: #ea6c0a;
+      box-shadow: 0 0 18px rgba(249,115,22,0.4);
+    }
+
+    .amazon-disclaimer {
+      margin: 16px auto 0;
+      padding: 12px 18px;
+      background: rgba(37,99,235,0.06);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #64748B;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
     }
 
     /* ── GŁÓWNA TREŚĆ (ukryta domyślnie) ── */
@@ -498,6 +567,157 @@
     .footer-tom-link.coming:hover { border-color: rgba(37,99,235,0.3); color: #93C5FD; }
     .footer-copy { font-size: 0.78rem; color: #475569; }
 
+    /* ── NEWSLETTER & REVIEW SECTIONS ── */
+    .bonus-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bonus-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+
+    .bonus-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .bonus-card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .bonus-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .bonus-card p {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bonus-card p small {
+      color: #475569;
+      font-size: 0.78rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+
+    .newsletter-input::placeholder { color: #475569; }
+
+    .btn-newsletter {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 22px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-newsletter:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 16px rgba(37,99,235,0.35);
+    }
+
+    .review-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 14px;
+      padding: 32px 36px;
+      text-align: center;
+    }
+
+    .review-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .review-card p {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .review-card p .highlight {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .review-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-review {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-review:hover {
+      background: #ea6c0a;
+      box-shadow: 0 0 16px rgba(249,115,22,0.4);
+    }
+
     @media (max-width: 540px) {
       header { padding: 40px 16px 32px; }
       .login-box { padding: 36px 24px; }
@@ -526,7 +746,17 @@
     <div class="error-msg" id="error-msg"></div>
     <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
     <p class="login-hint">Your code is on the last page of the e-book</p>
+
+    <div class="upsell-block">
+      <span class="upsell-label">🔒 What's inside</span>
+      <p>Unlock <strong>50 ready-to-copy AI prompts</strong> for organisation &amp; planning — weekly schedules, task prioritisation, meeting prep, delegation, and more. This companion page makes copying them effortless.<br><br>Don't have Book 2 yet?</p>
+      <a class="btn-amazon" href="https://ebooks.aidorzeczy.com" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
+    </div>
   </div>
+
+  <p class="amazon-disclaimer">
+    This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
+  </p>
 </div>
 
 <!-- ══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
@@ -949,6 +1179,76 @@ What I want to protect for rest and myself:
 
 </main>
 
+<!-- ══ NEWSLETTER & REVIEW ══════════════════════════════════════════════ -->
+<div class="bonus-section">
+
+  <!-- Newsletter -->
+  <div class="bonus-card">
+    <div class="bonus-card-header">
+      <div class="bonus-card-icon">✉️</div>
+      <h3>Join the AI community and get your bonuses</h3>
+    </div>
+    <p>Sign up for my free newsletter to receive updates on new prompts, AI tool news, and upcoming books in the series.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" id="nl2-email" placeholder="Your best email address">
+      <button class="btn-newsletter" id="nl2-btn" onclick="nlSubmit('nl2')">Sign me up →</button>
+    </div>
+    <div id="nl2-msg" style="min-height:18px;margin-top:10px;font-size:0.82rem;"></div>
+    <p style="margin-top:8px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
+  </div>
+
+  <script>
+  async function nlSubmit(id) {
+    const email = document.getElementById(id+'-email').value.trim();
+    const msg   = document.getElementById(id+'-msg');
+    const btn   = document.getElementById(id+'-btn');
+    if (!email || !email.includes('@')) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.textContent = '';
+    try {
+      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter' })
+      });
+      if (r.ok) {
+        msg.style.color = '#22C55E';
+        msg.textContent = '✓ You\'re on the list!';
+        btn.textContent = '✓ Done!';
+        btn.style.background = 'var(--green-dim, #15803D)';
+        document.getElementById(id+'-email').value = '';
+      } else {
+        const d = await r.json();
+        msg.style.color = '#EF4444';
+        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
+        btn.disabled = false;
+        btn.textContent = 'Sign me up →';
+      }
+    } catch(e) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Connection error. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Sign me up →';
+    }
+  }
+  </script>
+  <div class="review-card">
+    <h3>Did my prompts make your life easier?</h3>
+    <p>Your opinion is the fuel for this series. If the knowledge in my ebooks saved you time, <span class="highlight">leaving a short, honest review on Amazon takes 30 seconds</span> — and helps me reach more people.</p>
+    <div class="review-buttons">
+      <a class="btn-review" href="LINK_DO_RECENZJI_TOM1_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 1</a>
+      <a class="btn-review" href="LINK_DO_RECENZJI_TOM2_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 2</a>
+      <a class="btn-review" href="LINK_DO_RECENZJI_TOM3_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 3</a>
+    </div>
+  </div>
+
+</div>
+
 <footer>
   <div class="footer-tomy">
     <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com">Book 1 — Communication &amp; Difficult Emails</a>
@@ -956,6 +1256,7 @@ What I want to protect for rest and myself:
     <a class="footer-tom-link coming" href="https://book3.aidorzeczy.com">Book 3 — Household Budget</a>
   </div>
   <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book2.aidorzeczy.com</p>
+  <p class="amazon-disclaimer" style="max-width:680px;margin:12px auto 0;">This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.</p>
 </footer>
 
 </div><!-- koniec #tresc -->
