@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Made Simple · Book 2 · Ready-to-Copy Prompts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="./AI Made Simple · Book 2 · Ready-to-Copy Prompts_files/css2" rel="stylesheet">
   <style>
     :root {
       --navy:       #0E1C36;
@@ -78,6 +77,17 @@
       position: relative;
     }
 
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+
     .login-badge {
       display: inline-block;
       background: rgba(249,115,22,0.1);
@@ -97,7 +107,10 @@
       font-size: 1.8rem;
       font-weight: 800;
       margin-bottom: 8px;
-      color: var(--white);
+      background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .login-box p {
@@ -105,6 +118,10 @@
       color: var(--muted);
       margin-bottom: 32px;
       line-height: 1.6;
+    }
+
+    .login-box p strong {
+      color: var(--white);
     }
 
     .kod-input {
@@ -121,11 +138,26 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
-      border: 1px solid var(--border);
     }
 
-    .kod-input:focus { border-color: var(--blue); }
+    .kod-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+
+    .kod-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.2);
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-8px); }
+      75%      { transform: translateX(8px); }
+    }
 
     .btn-odblokuj {
       width: 100%;
@@ -136,8 +168,30 @@
       padding: 14px;
       font-size: 1rem;
       font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
       cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
       margin-bottom: 16px;
+    }
+
+    .btn-odblokuj:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 20px rgba(37,99,235,0.4);
+    }
+
+    .btn-odblokuj:active { transform: scale(0.98); }
+
+    .error-msg {
+      font-size: 0.85rem;
+      color: var(--red);
+      min-height: 20px;
+      margin-bottom: 8px;
+    }
+
+    .login-hint {
+      font-size: 0.78rem;
+      color: #475569;
+      margin-top: 16px;
     }
 
     .upsell-block {
@@ -147,6 +201,31 @@
       text-align: left;
     }
 
+    .upsell-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 5px;
+      padding: 2px 9px;
+      margin-bottom: 10px;
+    }
+
+    .upsell-block p {
+      font-size: 0.88rem;
+      color: #CBD5E1;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .upsell-block p strong {
+      color: var(--white);
+    }
+
     .btn-amazon {
       display: inline-flex;
       align-items: center;
@@ -154,12 +233,40 @@
       background: var(--orange);
       color: #fff;
       text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
       font-weight: 700;
       padding: 10px 20px;
       border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
     }
 
-    /* ── NAGŁÓWEK FIX DLA IPHONE ── */
+    .btn-amazon:hover {
+      background: #ea6c0a;
+      box-shadow: 0 0 18px rgba(249,115,22,0.4);
+    }
+
+    .amazon-disclaimer {
+      margin: 16px auto 0;
+      padding: 12px 18px;
+      background: rgba(37,99,235,0.06);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #64748B;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    /* ── GŁÓWNA TREŚĆ (ukryta domyślnie) ── */
+    #tresc {
+      display: none;
+    }
+
+    /* ── HEADER ── */
     header {
       position: relative;
       text-align: center;
@@ -167,6 +274,43 @@
       border-bottom: 1px solid var(--border);
     }
 
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+
+    .header-glow {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .tom-badge {
+      display: inline-block;
+      background: var(--orange-dim);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--orange-dim);
+      margin-bottom: 18px;
+    }
+
+    /* POPRAWKA DLA IPHONE / SAFARI */
     header h1 {
       font-family: 'Outfit', Arial, sans-serif;
       font-size: clamp(1rem, 2.5vw, 1.5rem);
@@ -181,12 +325,29 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      transform: translateZ(0); /* Wymuszenie sprzętowe - twardy fix dla starych iPhone'ów */
+      transform: translateZ(0); 
     }
 
-    /* ── GŁÓWNA TREŚĆ ── */
-    #tresc { display: none; }
+    header .subtitle {
+      font-size: 1.3rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
 
+    .header-tip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.12);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      color: #93C5FD;
+      max-width: 520px;
+    }
+
+    /* ── NAW ── */
     .chapter-nav {
       position: sticky;
       top: 0;
@@ -199,239 +360,257 @@
       justify-content: center;
       gap: 4px;
       overflow-x: auto;
+      scrollbar-width: none;
     }
+    .chapter-nav::-webkit-scrollbar { display: none; }
 
     .nav-item {
+      flex-shrink: 0;
       padding: 14px 16px;
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
       text-decoration: none;
       white-space: nowrap;
-      border-bottom: 2px solid transparent;
     }
-
+    .nav-item:hover { color: var(--white); }
     .nav-item.active { color: var(--orange); border-bottom-color: var(--orange); }
 
-    main { max-width: 800px; margin: 0 auto; padding: 0 20px 60px; }
+    /* ── MAIN ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
 
     .chapter { padding-top: 48px; }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-top: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chapter-info h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .chapter-info p { font-size: 0.82rem; color: var(--muted); }
 
     .komenda-card {
       background: var(--navy-card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      margin-bottom: 24px;
-      padding: 24px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
+
+    .komenda-card:hover {
+      border-color: rgba(37,99,235,0.4);
+      box-shadow: 0 4px 24px rgba(37,99,235,0.08);
+    }
+
+    .komenda-head {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px 10px;
+      gap: 12px;
+    }
+
+    .komenda-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .komenda-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--orange);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.2);
+      border-radius: 5px;
+      padding: 2px 8px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .komenda-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .komenda-body { padding: 0 18px 16px; }
 
     .komenda-tekst {
       background: var(--navy-inner);
-      padding: 16px;
+      border: 1px solid var(--border);
       border-radius: 8px;
+      padding: 14px 16px;
       font-size: 0.875rem;
       line-height: 1.7;
       color: #CBD5E1;
       white-space: pre-wrap;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .komenda-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .btn-kopiuj {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: var(--blue);
       color: white;
       border: none;
-      padding: 10px 20px;
       border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      font-family: 'DM Sans', sans-serif;
     }
 
+    .btn-kopiuj:hover { background: var(--blue-light); box-shadow: 0 0 16px rgba(37,99,235,0.4); }
+    .btn-kopiuj:active { transform: scale(0.96); }
     .btn-kopiuj.success { background: var(--green-dim); }
+    .btn-kopiuj.error   { background: #991B1B; }
+
+    .copy-hint { font-size: 0.78rem; color: var(--muted); }
 
     .progress-bar {
       background: rgba(37,99,235,0.1);
       border: 1px solid rgba(37,99,235,0.2);
       border-radius: 6px;
       padding: 12px 18px;
-      margin: 20px 0 32px;
+      margin-bottom: 32px;
+      margin-top: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
     }
 
-    .progress-track { flex: 1; height: 5px; background: var(--border); border-radius: 999px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--blue), var(--glow)); transition: width 0.4s; }
+    .progress-track {
+      flex: 1;
+      height: 5px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
 
-    .dominate-headline {
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--glow));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-label { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+    .progress-count { font-size: 0.78rem; color: #93C5FD; font-weight: 600; white-space: nowrap; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    .footer-tomy {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-tom-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .footer-tom-link.current {
+      background: rgba(249,115,22,0.15);
+      border: 1px solid rgba(249,115,22,0.3);
+      color: var(--orange);
+      cursor: default;
+    }
+
+    .footer-tom-link.coming {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-tom-link.coming:hover { border-color: rgba(37,99,235,0.3); color: #93C5FD; }
+    .footer-copy { font-size: 0.78rem; color: #475569; }
+
+    /* ── NEWSLETTER & REVIEW SECTIONS ── */
+    .bonus-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bonus-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+
+    .bonus-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .bonus-card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .bonus-card h3 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.1rem, 3.5vw, 1.75rem);
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #F97316 0%, #FBBF24 40%, #F97316 80%, #FB923C 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s linear infinite;
-    }
-
-    @keyframes shimmer { from { background-position: 0% center; } to { background-position: 200% center; } }
-  </style>
-</head>
-<body>
-
-<div id="ekran-logowania">
-  <div class="logowanie-wrapper">
-    <div style="text-align:center;margin-bottom:28px;">
-      <div class="dominate-headline" style="margin-bottom:6px;">DON&rsquo;T FEAR AI: DOMINATE YOUR FUTURE</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--muted);letter-spacing:0.02em;">AI Made Simple</div>
-    </div>
-    <div class="login-box">
-      <div class="login-badge">Book 2 &middot; Don’t Fear AI</div>
-      <h1>Access code</h1>
-      <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 2</strong></p>
-      <input type="text" id="kod-input" class="kod-input" placeholder="BOOK2-XXXX" maxlength="10">
-      <div id="error-msg" style="color:var(--red); font-size:0.85rem; margin-bottom:8px; min-height:20px;"></div>
-      <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
-      <p style="font-size:0.78rem; color:#475569;">Your code is on the last page of the e-book</p>
-      <div class="upsell-block">
-        <p style="margin-bottom:14px; color: #CBD5E1;">Don't have Book 2 yet?</p>
-        <a class="btn-amazon" href="https://ebooks.aidorzeczy.com/" target="_blank">📖 Get it on Amazon →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="tresc">
-<header>
-  <div class="dominate-headline">DON’T FEAR AI: DOMINATE YOUR FUTURE</div>
-  <div style="color:var(--glow); font-weight:600; margin-bottom:6px;">AI Made Simple</div>
-  <h1>
-    <span>Book 2: Organisation &amp; Planning.</span>
-    <span>Reclaim 5 hours a week.</span>
-  </h1>
-</header>
-
-<nav class="chapter-nav">
-  <a class="nav-item" href="#r1">Ch. 1 — Kitchen</a>
-  <a class="nav-item" href="#r2">Ch. 2 — Meal Plan</a>
-  <a class="nav-item" href="#r3">Ch. 3 — Schedule</a>
-  <a class="nav-item" href="#r4">Ch. 4 — Travel</a>
-  <a class="nav-item" href="#r5">Ch. 5 — To-Do</a>
-</nav>
-
-<main>
-  <div class="progress-bar">
-    <span style="font-size:0.78rem; color:var(--muted);">Prompts copied:</span>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <span id="progressCount" style="font-size:0.78rem; color:#93C5FD; font-weight:600;">0 / 10</span>
-  </div>
-
-  <section class="chapter" id="r1">
-    <h2>Chapter 1: Your Kitchen Assistant</h2>
-    <div class="komenda-card">
-      <div class="komenda-tekst" id="k1">Act as an experienced home cook.
-Based on the ingredients I have at home, suggest a specific recipe for tonight's dinner.
-Keep it simple — maximum 30 minutes from start to plate.
-Ingredients I have: [List what's in your fridge]</div>
-      <button class="btn-kopiuj" onclick="kopiuj('k1', this)">📋 Copy prompt</button>
-    </div>
-  </section>
-
-  <section class="chapter" id="r2">
-    <h2>Chapter 2: The Weekly Meal Planner</h2>
-    <div class="komenda-card">
-      <div class="komenda-tekst" id="k2">Act as a nutritionist and experienced home cook.
-Create a 7-day meal plan for me (Monday through Sunday).
-After the meal plan, add a combined shopping list for the whole week.
-Number of people: [e.g. family of 4]</div>
-      <button class="btn-kopiuj" onclick="kopiuj('k2', this)">📋 Copy prompt</button>
-    </div>
-  </section>
-
-  <section class="chapter" id="r3">
-    <h2>Chapter 3: Your Daily Schedule</h2>
-    <div class="komenda-card">
-      <div class="komenda-tekst" id="k3">Act as a highly efficient personal assistant.
-Create a detailed schedule for my day based on the tasks below.
-My tasks for today: [List your tasks here]</div>
-      <button class="btn-kopiuj" onclick="kopiuj('k3', this)">📋 Copy prompt</button>
-    </div>
-  </section>
-
-  <section class="chapter" id="r4">
-    <h2>Chapter 4: Your Holiday Planner</h2>
-    <div class="komenda-card">
-      <div class="komenda-tekst" id="k4">Act as an experienced travel guide.
-Help me plan a trip to [Destination]. Prepare a day-by-day itinerary and a packing list.</div>
-      <button class="btn-kopiuj" onclick="kopiuj('k4', this)">📋 Copy prompt</button>
-    </div>
-  </section>
-
-  <section class="chapter" id="r5">
-    <h2>Chapter 5: Get on Top of Your To-Do List</h2>
-    <div class="komenda-card">
-      <div class="komenda-tekst" id="k5">Act as a highly organised assistant.
-Based on my list, create a priority table: Urgent & Important / Can wait.
-My list: [Paste your list here]</div>
-      <button class="btn-kopiuj" onclick="kopiuj('k5', this)">📋 Copy prompt</button>
-    </div>
-  </section>
-</main>
-</div>
-
-<script>
-  const _H = ['3b0f6724023c56de9e8eb23060ff2c761b62023c3fc42ad389528835d19624f2','cbba6f7ec62d8e73e0068f65e1ddaf215c4685fa00feedf6e5bd3f05657c4891'];
-  const _K = 'b2_acc_v3';
-
-  async function _sha256(msg) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-
-  async function sprawdzKod() {
-    const input = document.getElementById('kod-input');
-    const msg = document.getElementById('error-msg');
-    const raw = input.value.trim().toUpperCase();
-    const variants = [raw, 'BOOK2-' + raw, raw.replace(/^BOOK2-/,'')];
-    const hashes = await Promise.all(variants.map(_sha256));
-    if (hashes.some(h => _H.includes(h))) { localStorage.setItem(_K, '1'); odblokuj(); } 
-    else { msg.textContent = 'Incorrect code. Check Book 2.'; }
-  }
-
-  function odblokuj() {
-    document.getElementById('ekran-logowania').style.display = 'none';
-    document.getElementById('tresc').style.display = 'block';
-  }
-
-  if (localStorage.getItem(_K) === '1') odblokuj();
-
-  const copied = new Set();
-  function kopiuj(id, btn) {
-    const el = document.getElementById(id);
-    const txt = el.innerText;
-    
-    const updateUI = () => {
-      btn.innerText = '✓ Copied!'; btn.classList.add('success');
-      copied.add(id);
-      document.getElementById('progressCount').innerText = copied.size + ' / 10';
-      document.getElementById('progressFill').style.width = (copied.size * 10) + '%';
-      setTimeout(() => { btn.innerText = '📋 Copy prompt'; btn.classList.remove('success'); }, 2000);
-    };
-
-    if (!navigator.clipboard) {
-      const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta);
-      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      updateUI(); return;
-    }
-    navigator.clipboard.writeText(txt).then(updateUI);
-  }
-
-  document.querySelectorAll('.komenda-tekst').forEach(el => {
-    el.innerHTML = el.innerHTML.replace(/(\[[^\]]*\])/g, '<em style="color:#93C5FD;font-style:italic;">$1</em>');
-  });
-</script>
-</body>
-</html>
+      font-size: 1.15rem;
+      font-weight:
