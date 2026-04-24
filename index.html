@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<!-- saved from url=(0029)https://book2.aidorzeczy.com/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Made Simple · Book 2 · Ready-to-Copy Prompts</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link href="./AI Made Simple · Book 2 · Ready-to-Copy Prompts_files/css2" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --navy:       #0E1C36;
@@ -54,9 +57,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 24px;
       overflow-y: auto;
+    }
+
+    .logowanie-wrapper {
+      margin: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
     }
 
     .login-box {
@@ -303,16 +314,22 @@
       margin-bottom: 18px;
     }
 
+    /* POPRAWKA DLA IPHONE / SAFARI */
     header h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-family: 'Outfit', Arial, sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
       font-weight: 800;
-      line-height: 1.5;
-      margin-bottom: 8px;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    header h1 span {
+      display: block;
       background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      transform: translateZ(0); 
     }
 
     header .subtitle {
@@ -752,48 +769,58 @@
 </head>
 <body>
 
-<!-- ══ ACCESS SCREEN ═══════════════════════════════════════════════════ -->
 <div id="ekran-logowania">
-  <div class="login-box">
-    <div class="login-badge">Book 2 · AI Made Simple</div>
-    <h1>Access code</h1>
-    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 2</strong></p>
-    <input type="text" id="kod-input" class="kod-input" placeholder="BOOK2-XXXX" maxlength="10" autocomplete="off" spellcheck="false">
-    <div class="error-msg" id="error-msg"></div>
-    <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
-    <p class="login-hint">Your code is on the last page of the e-book</p>
-
-    <div class="upsell-block">
-      <span class="upsell-label">🔒 What's inside</span>
-      <p>Unlock <strong>10 ready-to-copy AI prompts</strong> for organisation &amp; planning — weekly schedules, task prioritisation, meeting prep, delegation, and more. This companion page makes copying them effortless.<br><br>Don't have Book 2 yet?</p>
-      <a class="btn-amazon" href="https://ebooks.aidorzeczy.com/" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
+  <div class="logowanie-wrapper">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div class="dominate-headline" style="margin-bottom:6px;">DON&rsquo;T FEAR AI: DOMINATE YOUR FUTURE</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--muted);letter-spacing:0.02em;">AI Made Simple</div>
     </div>
+    <div class="login-box">
+      <div class="login-badge">Book 2 &middot; Don’t Fear AI</div>
+      <h1>Access code</h1>
+      <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 2</strong></p>
+      <input type="text" id="kod-input" class="kod-input" placeholder="BOOK2-XXXX" maxlength="10" autocomplete="off" spellcheck="false">
+      <div class="error-msg" id="error-msg"></div>
+      <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
+      <p class="login-hint">Your code is on the last page of the e-book</p>
 
-    <div class="upsell-block" style="margin-top:20px;">
-      <span class="upsell-label">✉️ Free newsletter</span>
-      <p>Not ready to buy yet? <strong>Get free AI tips, new prompts &amp; updates</strong> — straight to your inbox. No spam, unsubscribe any time.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <input type="email" id="nl-lock-email" placeholder="Your best email address" style="flex:1;min-width:0;background:var(--navy-inner);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:0.88rem;color:var(--white);outline:none;font-family:&#39;DM Sans&#39;,sans-serif;">
-        <button id="nl-lock-btn" onclick="nlLockSubmit()" style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-size:0.88rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:&#39;DM Sans&#39;,sans-serif;transition:background 0.2s;" onmouseover="this.style.background=&#39;#ea6c0a&#39;" onmouseout="this.style.background=&#39;var(--orange)&#39;">Sign me up →</button>
+      <div class="upsell-block">
+        <span class="upsell-label">🔒 What's inside</span>
+        <p>Unlock <strong>10 ready-to-copy AI prompts</strong> for organisation &amp; planning — weekly schedules, task prioritisation, meeting prep, delegation, and more. This companion page makes copying them effortless.<br><br>Don't have Book 2 yet?</p>
+        <a class="btn-amazon" href="https://ebooks.aidorzeczy.com/" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
       </div>
-      <div id="nl-lock-msg" style="min-height:16px;margin-top:8px;font-size:0.82rem;"></div>
-      <p style="margin-top:10px;margin-bottom:0;font-size:0.72rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#64748B;text-decoration:underline;">Privacy Policy</a> for details.</p>
-    </div>
-  </div>
 
-  <p class="amazon-disclaimer">
-    This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
-  </p>
+      <div class="upsell-block" style="margin-top:20px;">
+        <span class="upsell-label">✉️ Free newsletter</span>
+        <p>Not ready to buy yet? <strong>Get free AI tips, new prompts &amp; updates</strong> — straight to your inbox. No spam, unsubscribe any time.</p>
+        <div style="display:flex;align-items:center;gap:14px;margin:14px 0 10px;flex-wrap:wrap;">
+          <span style="font-size:2rem;animation:pointRight 1.2s ease-in-out infinite;display:inline-block;">&#x1F449;</span>
+          <a href="https://ebooks.aidorzeczy.com/#community" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;padding:11px 22px;border-radius:8px;box-shadow:0 4px 16px rgba(37,99,235,0.4);">
+            Sign me up →
+          </a>
+        </div>
+        <style>@keyframes pointRight{0%,100%{transform:translateX(0)}50%{transform:translateX(9px)}}</style>
+        <p style="margin-top:10px;margin-bottom:0;font-size:0.72rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#64748B;text-decoration:underline;">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+
+    <p class="amazon-disclaimer">
+      This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
+    </p>
+  </div>
 </div>
 
-<!-- ══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
 <div id="tresc">
 
 <header>
   <div class="header-glow"></div>
-  <div class="dominate-headline">AI MADE SIMPLE: DOMINATE YOUR FUTURE</div>
+  <div class="dominate-headline">DON’T FEAR AI: DOMINATE YOUR FUTURE</div>
   <div class="header-series">AI Made Simple</div>
-  <h1 style="font-size:clamp(1rem,2.5vw,1.5rem);font-weight:700;">Book 2: Organisation &amp; Planning.<br>Reclaim 5 hours a week.</h1>
+  <h1>
+    <span>Book 2: Organisation &amp; Planning.</span>
+    <span>Reclaim 5 hours a week.</span>
+  </h1>
   <div class="header-tagline">How to stop juggling everything in your head — no tech knowledge required.</div>
   <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book2.aidorzeczy.com</div>
   <div class="header-tip">
@@ -821,7 +848,6 @@
     <span class="progress-count" id="progressCount">0 / 10</span>
   </div>
 
-  <!-- ═══ CHAPTER 1 ═══ -->
   <section class="chapter" id="r1">
     <div class="chapter-header">
       <div class="chapter-icon">🍳</div>
@@ -859,7 +885,6 @@ What we don't eat or want to avoid: [e.g. no spicy food / no dairy / we don't li
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 2 ═══ -->
   <section class="chapter" id="r2">
     <div class="chapter-header">
       <div class="chapter-icon">📅</div>
@@ -901,7 +926,6 @@ Cuisine style we enjoy: [e.g. Italian, Asian, Mediterranean — or: no preferenc
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 3 ═══ -->
   <section class="chapter" id="r3">
     <div class="chapter-header">
       <div class="chapter-icon">🕐</div>
@@ -945,7 +969,6 @@ Any fixed commitments or blocks I can't move?
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 4 ═══ -->
   <section class="chapter" id="r4">
     <div class="chapter-header">
       <div class="chapter-icon">✈️</div>
@@ -991,7 +1014,6 @@ Budget level: [e.g. budget-conscious / mid-range / no restrictions]</div>
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 5 ═══ -->
   <section class="chapter" id="r5">
     <div class="chapter-header">
       <div class="chapter-icon">📋</div>
@@ -1030,7 +1052,6 @@ Here's everything on my mind right now (write as messily as you like):
     </div>
   </section>
 
-  <!-- ═══ CHEAT SHEET ═══ -->
   <section class="chapter" id="cheatsheet">
     <div class="chapter-header">
       <div class="chapter-icon">📌</div>
@@ -1054,7 +1075,6 @@ Here's everything on my mind right now (write as messily as you like):
     </div>
   </section>
 
-  <!-- ═══ ADVANCED ═══ -->
   <section class="chapter" id="advanced">
     <div class="chapter-header">
       <div class="chapter-icon">🚀</div>
@@ -1206,73 +1226,32 @@ What I want to protect for rest and myself:
 
 </main>
 
-<!-- ══ NEWSLETTER & REVIEW ══════════════════════════════════════════════ -->
 <div class="bonus-section">
 
-  <!-- Newsletter -->
   <div class="bonus-card">
     <div class="bonus-card-header">
       <div class="bonus-card-icon">✉️</div>
       <h3>Join the AI community and get your bonuses</h3>
     </div>
     <p>Sign up for my free newsletter to receive updates on new prompts, AI tool news, and upcoming books in the series.</p>
-    <div class="newsletter-form">
-      <input class="newsletter-input" type="email" id="nl2-email" placeholder="Your best email address">
-      <button class="btn-newsletter" id="nl2-btn" onclick="nlSubmit(&#39;nl2&#39;)">Sign me up →</button>
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:22px 0 14px;flex-wrap:wrap;">
+      <span style="font-size:2.2rem;animation:pointRight 1.2s ease-in-out infinite;display:inline-block;">&#x1F449;</span>
+      <a href="https://ebooks.aidorzeczy.com/#community" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;padding:14px 28px;border-radius:9px;box-shadow:0 4px 20px rgba(37,99,235,0.4);">
+        Sign me up →
+      </a>
     </div>
-    <div id="nl2-msg" style="min-height:18px;margin-top:10px;font-size:0.82rem;"></div>
-    <p style="margin-top:8px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
+    <p style="margin-top:4px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
     <p style="margin-top:10px;margin-bottom:0;font-size:0.75rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#94A3B8;text-decoration:underline;">Privacy Policy</a> for details.</p>
   </div>
-
-  <script>
-  async function nlSubmit(id) {
-    const email = document.getElementById(id+'-email').value.trim();
-    const msg   = document.getElementById(id+'-msg');
-    const btn   = document.getElementById(id+'-btn');
-    if (!email || !email.includes('@')) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Please enter a valid email address.';
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    msg.textContent = '';
-    try {
-      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter' })
-      });
-      if (r.ok) {
-        msg.style.color = '#22C55E';
-        msg.textContent = '✓ You\'re on the list!';
-        btn.textContent = '✓ Done!';
-        btn.style.background = 'var(--green-dim, #15803D)';
-        document.getElementById(id+'-email').value = '';
-      } else {
-        const d = await r.json();
-        msg.style.color = '#EF4444';
-        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
-        btn.disabled = false;
-        btn.textContent = 'Sign me up →';
-      }
-    } catch(e) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Connection error. Please try again.';
-      btn.disabled = false;
-      btn.textContent = 'Sign me up →';
-    }
-  }
-  </script>
   <div class="review-card">
     <h3>Did my prompts make your life easier?</h3>
     <p>Your opinion is the fuel for this series. If the knowledge in my ebooks saved you time, <span class="highlight">leaving a short, honest review on Amazon takes 30 seconds</span> — and helps me reach more people.</p>
     <div class="review-buttons">
-      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM1_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 1</a>
-      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM2_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 2</a>
-      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM3_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 3</a>
-      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM4_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 4</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 1</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 2</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 3</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-4-6" target="_blank" rel="noopener">⭐ Review Book 4</a>
     </div>
   </div>
 
@@ -1285,54 +1264,16 @@ What I want to protect for rest and myself:
     <a class="footer-tom-link coming" href="https://book3.aidorzeczy.com/">Book 3 — Household Budget</a>
     <a class="footer-tom-link coming" href="https://book4.aidorzeczy.com/">Book 4 — Movies &amp; What to Watch</a>
   </div>
-  <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book2.aidorzeczy.com</p>
+  <p class="footer-copy">Don’t Fear AI · Leszek Ignatowicz · book2.aidorzeczy.com</p>
+  <p class="footer-copy" style="margin-top:8px;">
+    <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#475569;text-decoration:underline;">Privacy Policy</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://ebooks.aidorzeczy.com/" target="_blank" rel="noopener" style="color:#475569;text-decoration:underline;">ebooks.aidorzeczy.com</a>
+  </p>
   <p class="amazon-disclaimer" style="max-width:680px;margin:12px auto 0;">This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.</p>
 </footer>
 
-</div><!-- koniec #tresc -->
-
-<script>
-  // ── Newsletter na ekranie logowania ───────────────────────
-  async function nlLockSubmit() {
-    const emailEl = document.getElementById('nl-lock-email');
-    const msg     = document.getElementById('nl-lock-msg');
-    const btn     = document.getElementById('nl-lock-btn');
-    const email   = emailEl.value.trim();
-    if (!email || !email.includes('@')) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Please enter a valid email address.';
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    msg.textContent = '';
-    try {
-      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter (Book 2 lock screen)' })
-      });
-      if (r.ok) {
-        msg.style.color = '#22C55E';
-        msg.textContent = '✓ You\'re on the list!';
-        btn.textContent = '✓ Done!';
-        btn.style.background = '#15803D';
-        emailEl.value = '';
-      } else {
-        const d = await r.json();
-        msg.style.color = '#EF4444';
-        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
-        btn.disabled = false;
-        btn.textContent = 'Sign me up →';
-      }
-    } catch(e) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Connection error. Please try again.';
-      btn.disabled = false;
-      btn.textContent = 'Sign me up →';
-    }
-  }
-
+</div><script>
   // Dostęp chroniony hashem SHA-256 — hasła nie są przechowywane w źródle
   const _H = [
     '3b0f6724023c56de9e8eb23060ff2c761b62023c3fc42ad389528835d19624f2',
@@ -1427,7 +1368,5 @@ What I want to protect for rest and myself:
     el.innerHTML = el.innerHTML.replace(/(\[[^\]]*\])/g, '<em style="color:#93C5FD;font-style:italic;">$1</em>');
   });
 </script>
-
-
 
 </body></html>
