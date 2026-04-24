@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- saved from url=(0029)https://book2.aidorzeczy.com/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,17 +54,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       padding: 24px;
       overflow-y: auto;
-    }
-
-    .logowanie-wrapper {
-      margin: auto;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 0;
     }
 
     .login-box {
@@ -310,22 +303,16 @@
       margin-bottom: 18px;
     }
 
-    /* POPRAWKA DLA IPHONE / SAFARI */
     header h1 {
-      font-family: 'Outfit', Arial, sans-serif;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-
-    header h1 span {
-      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 8px;
       background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      transform: translateZ(0); 
     }
 
     header .subtitle {
@@ -613,4 +600,834 @@
     .bonus-card h3 {
       font-family: 'Outfit', sans-serif;
       font-size: 1.15rem;
-      font-weight:
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .bonus-card p {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bonus-card p small {
+      color: #475569;
+      font-size: 0.78rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+
+    .newsletter-input::placeholder { color: #475569; }
+
+    .btn-newsletter {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 22px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-newsletter:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 16px rgba(37,99,235,0.35);
+    }
+
+    .review-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 14px;
+      padding: 32px 36px;
+      text-align: center;
+    }
+
+    .review-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .review-card p {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .review-card p .highlight {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .review-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-review {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-review:hover {
+      background: #ea6c0a;
+      box-shadow: 0 0 16px rgba(249,115,22,0.4);
+    }
+
+    @media (max-width: 540px) {
+      header { padding: 40px 16px 32px; }
+      .login-box { padding: 36px 24px; }
+      .btn-kopiuj { width: 100%; justify-content: center; }
+      .komenda-actions { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── DOMINATE HEADLINE ── */
+    .dominate-headline {
+      font-family: 'Outfit', Arial, sans-serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #F97316 0%, #FBBF24 40%, #F97316 80%, #FB923C 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      filter: drop-shadow(0 0 18px rgba(249,115,22,0.45));
+    }
+    @keyframes shimmer {
+      from { background-position: 0% center; }
+      to   { background-position: 200% center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ ACCESS SCREEN ═══════════════════════════════════════════════════ -->
+<div id="ekran-logowania">
+  <div class="login-box">
+    <div class="login-badge">Book 2 · AI Made Simple</div>
+    <h1>Access code</h1>
+    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 2</strong></p>
+    <input type="text" id="kod-input" class="kod-input" placeholder="BOOK2-XXXX" maxlength="10" autocomplete="off" spellcheck="false">
+    <div class="error-msg" id="error-msg"></div>
+    <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
+    <p class="login-hint">Your code is on the last page of the e-book</p>
+
+    <div class="upsell-block">
+      <span class="upsell-label">🔒 What's inside</span>
+      <p>Unlock <strong>10 ready-to-copy AI prompts</strong> for organisation &amp; planning — weekly schedules, task prioritisation, meeting prep, delegation, and more. This companion page makes copying them effortless.<br><br>Don't have Book 2 yet?</p>
+      <a class="btn-amazon" href="https://ebooks.aidorzeczy.com/" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
+    </div>
+
+    <div class="upsell-block" style="margin-top:20px;">
+      <span class="upsell-label">✉️ Free newsletter</span>
+      <p>Not ready to buy yet? <strong>Get free AI tips, new prompts &amp; updates</strong> — straight to your inbox. No spam, unsubscribe any time.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <input type="email" id="nl-lock-email" placeholder="Your best email address" style="flex:1;min-width:0;background:var(--navy-inner);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:0.88rem;color:var(--white);outline:none;font-family:&#39;DM Sans&#39;,sans-serif;">
+        <button id="nl-lock-btn" onclick="nlLockSubmit()" style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-size:0.88rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:&#39;DM Sans&#39;,sans-serif;transition:background 0.2s;" onmouseover="this.style.background=&#39;#ea6c0a&#39;" onmouseout="this.style.background=&#39;var(--orange)&#39;">Sign me up →</button>
+      </div>
+      <div id="nl-lock-msg" style="min-height:16px;margin-top:8px;font-size:0.82rem;"></div>
+      <p style="margin-top:10px;margin-bottom:0;font-size:0.72rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#64748B;text-decoration:underline;">Privacy Policy</a> for details.</p>
+    </div>
+  </div>
+
+  <p class="amazon-disclaimer">
+    This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
+  </p>
+</div>
+
+<!-- ══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
+<div id="tresc">
+
+<header>
+  <div class="header-glow"></div>
+  <div class="dominate-headline">AI MADE SIMPLE: DOMINATE YOUR FUTURE</div>
+  <div class="header-series">AI Made Simple</div>
+  <h1 style="font-size:clamp(1rem,2.5vw,1.5rem);font-weight:700;">Book 2: Organisation &amp; Planning.<br>Reclaim 5 hours a week.</h1>
+  <div class="header-tagline">How to stop juggling everything in your head — no tech knowledge required.</div>
+  <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book2.aidorzeczy.com</div>
+  <div class="header-tip">
+    <span class="icon">💡</span>
+    Click <strong>Copy prompt</strong>, then paste it into ChatGPT
+  </div>
+</header>
+
+<nav class="chapter-nav" id="chapNav">
+  <a class="nav-item active" href="https://book2.aidorzeczy.com/#r1" onclick="setActive(this)">Ch. 1 — Kitchen</a>
+  <a class="nav-item" href="https://book2.aidorzeczy.com/#r2" onclick="setActive(this)">Ch. 2 — Meal Plan</a>
+  <a class="nav-item" href="https://book2.aidorzeczy.com/#r3" onclick="setActive(this)">Ch. 3 — Schedule</a>
+  <a class="nav-item" href="https://book2.aidorzeczy.com/#r4" onclick="setActive(this)">Ch. 4 — Travel</a>
+  <a class="nav-item" href="https://book2.aidorzeczy.com/#r5" onclick="setActive(this)">Ch. 5 — To-Do</a>
+  <div class="nav-sep"></div>
+  <a class="nav-item" href="https://book2.aidorzeczy.com/#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
+  <a class="nav-item" href="https://book2.aidorzeczy.com/#advanced" onclick="setActive(this)">Advanced</a>
+</nav>
+
+<main>
+
+  <div class="progress-bar">
+    <span class="progress-label">Prompts copied:</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 10</span>
+  </div>
+
+  <!-- ═══ CHAPTER 1 ═══ -->
+  <section class="chapter" id="r1">
+    <div class="chapter-header">
+      <div class="chapter-icon">🍳</div>
+      <div class="chapter-info">
+        <h2>Chapter 1: Your Kitchen Assistant</h2>
+        <p>Prompt No. 1 · Get a recipe built around whatever you already have in the fridge</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 1</span>
+          <span class="komenda-title">Recipe from what I have — dinner sorted in 30 minutes</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k1">Act as an experienced home cook.
+
+Based on the ingredients I have at home, suggest a specific recipe for tonight's dinner.
+
+Keep it simple — maximum 30 minutes from start to plate.
+
+Give me: the name of the dish, a list of ingredients with quantities, and numbered cooking steps.
+
+Ingredients I have: [List what's in your fridge or cupboards, e.g. chicken breast, rice, onion, garlic, tinned tomatoes]
+
+Number of people: [e.g. 2 / family of 4]
+
+What we don't eat or want to avoid: [e.g. no spicy food / no dairy / we don't like fish — or type: no restrictions]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k1&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 2 ═══ -->
+  <section class="chapter" id="r2">
+    <div class="chapter-header">
+      <div class="chapter-icon">📅</div>
+      <div class="chapter-info">
+        <h2>Chapter 2: The Weekly Meal Planner</h2>
+        <p>Prompt No. 2 · 7-day meal plan plus a ready-to-go shopping list — all in one go</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 2</span>
+          <span class="komenda-title">Weekly meal plan with shopping list</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k2">Act as a nutritionist and experienced home cook.
+
+Create a 7-day meal plan for me (Monday through Sunday).
+
+For each day, give me: breakfast, lunch, and dinner.
+
+Keep the meals simple, quick to prepare, and genuinely enjoyable.
+
+After the meal plan, add a combined shopping list for the whole week, grouped by category (vegetables, meat, dairy, dry goods).
+
+Number of people: [e.g. 2 adults / family of 4 with children]
+
+Approximate weekly food budget: [e.g. $100 / $150 / flexible]
+
+What we don't eat or want to avoid: [e.g. no pork / no gluten / we don't like fish — or: no restrictions]
+
+Cuisine style we enjoy: [e.g. Italian, Asian, Mediterranean — or: no preference]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k2&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 3 ═══ -->
+  <section class="chapter" id="r3">
+    <div class="chapter-header">
+      <div class="chapter-icon">🕐</div>
+      <div class="chapter-info">
+        <h2>Chapter 3: Your Daily Schedule — Sorted</h2>
+        <p>Prompt No. 3 · Turn a chaotic task list into a realistic hour-by-hour plan</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 3</span>
+          <span class="komenda-title">Daily schedule from tasks in any order</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k3">Act as a highly efficient personal assistant.
+
+Create a detailed schedule for my day based on the tasks below.
+
+For each task, give me a suggested start time and estimated duration.
+
+Build in breaks and realistic travel time between locations.
+
+Make sure the plan is actually achievable — don't cram everything in.
+
+Time I wake up: [e.g. 7:00 am]
+
+Time I want to wrap everything up by: [e.g. 8:00 pm]
+
+My tasks for today (write them in any order, as messily as you like):
+[e.g. drop the car at the garage, call the doctor's surgery, send an important email, do the grocery shopping, pick up the kids from school at 3:30 pm, make dinner]
+
+Any fixed commitments or blocks I can't move?
+[e.g. work meeting 10:00–11:30 am / or: none, I'm flexible today]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k3&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 4 ═══ -->
+  <section class="chapter" id="r4">
+    <div class="chapter-header">
+      <div class="chapter-icon">✈️</div>
+      <div class="chapter-info">
+        <h2>Chapter 4: Your Holiday &amp; Trip Planner</h2>
+        <p>Prompt No. 4 · Full itinerary, packing list, and insider tips — in one conversation</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 4</span>
+          <span class="komenda-title">Complete trip plan with packing list</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k4">Act as an experienced travel guide and trip organiser.
+
+Help me plan a trip. Please prepare:
+
+1. A day-by-day itinerary with suggested times
+
+2. The top 5 must-see highlights — with a brief note on each
+
+3. A packing list tailored to the season and type of trip
+
+4. Three practical tips that most tourists miss
+
+Destination: [City, region, or country, e.g. Lisbon / Tuscany / Japan]
+
+Length of trip: [e.g. 3 days / one week]
+
+Who's travelling: [e.g. solo / couple / family with kids aged 6 and 10]
+
+What we enjoy: [e.g. history and museums / active outdoor days / beach and relaxation / great food and local restaurants / wandering through old town streets]
+
+Budget level: [e.g. budget-conscious / mid-range / no restrictions]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k4&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 5 ═══ -->
+  <section class="chapter" id="r5">
+    <div class="chapter-header">
+      <div class="chapter-icon">📋</div>
+      <div class="chapter-info">
+        <h2>Chapter 5: Get on Top of Your To-Do List</h2>
+        <p>Prompt No. 5 · Priority table with a concrete next step for every item</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 5</span>
+          <span class="komenda-title">Priority table with next steps for everything on your mind</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k5">Act as a highly organised personal assistant.
+
+Help me get on top of everything I need to deal with.
+
+Based on my list, create:
+
+1. A priority table: Urgent &amp; Important / Important but not urgent / Can wait
+
+2. For each item: one concrete "next step" — the single specific action I need to take to move it forward
+
+3. If anything has a hard deadline, flag it clearly with the date
+
+Here's everything on my mind right now (write as messily as you like):
+[e.g. book a dentist appointment, renew car insurance, call back my sister, order new glasses, file my tax return by end of month, fix the leaky kitchen tap]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k5&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHEAT SHEET ═══ -->
+  <section class="chapter" id="cheatsheet">
+    <div class="chapter-header">
+      <div class="chapter-icon">📌</div>
+      <div class="chapter-info">
+        <h2>Cheat Sheet — All Prompts at a Glance</h2>
+        <p>Prompts No. 1–5 in short form · Use the full chapter versions for best results</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-body" style="padding:20px 24px;">
+        <p style="color:var(--muted);font-size:0.88rem;margin-bottom:12px;">These are condensed versions. The full prompts in each chapter give the AI more context and produce better results.</p>
+        <p style="color:var(--white);font-size:0.9rem;margin:0;">
+          <strong>No. 1</strong> — Fridge recipe → Ch. 1 &nbsp;|&nbsp;
+          <strong>No. 2</strong> — Meal plan → Ch. 2 &nbsp;|&nbsp;
+          <strong>No. 3</strong> — Daily schedule → Ch. 3 &nbsp;|&nbsp;
+          <strong>No. 4</strong> — Trip planner → Ch. 4 &nbsp;|&nbsp;
+          <strong>No. 5</strong> — Priority list → Ch. 5
+        </p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book2.aidorzeczy.com/" style="color:var(--orange);">book2.aidorzeczy.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ADVANCED ═══ -->
+  <section class="chapter" id="advanced">
+    <div class="chapter-header">
+      <div class="chapter-icon">🚀</div>
+      <div class="chapter-info">
+        <h2>Advanced Prompts — Appendix 2</h2>
+        <p>Prompts No. 6–10 · More powerful versions for trickier situations</p>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 6</span>
+          <span class="komenda-title">Dinner from almost nothing — last-minute, near-empty fridge</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k6">Act as a genius improvising chef.
+
+I have almost nothing left in the fridge and very little time.
+
+Suggest something quick and genuinely edible — maximum 15 minutes.
+
+If I'm missing something, tell me the best substitute.
+
+What I have: [Even a very short list works, e.g. eggs, pasta, butter, garlic]
+Time available: [e.g. 10–15 minutes]
+Number of people: [e.g. 2]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k6&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 7</span>
+          <span class="komenda-title">Meal plan for a picky eater</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k7">Act as a paediatric nutritionist with plenty of real-world experience.
+
+Create a weekly meal plan for a picky eater.
+
+Meals should be tasty, nutritious, and take no more than 20 minutes to prepare.
+
+Introduce anything new very gently — the goal is meals they'll actually eat without a fight.
+
+Child's age: [e.g. 7 years old]
+What they like: [e.g. pasta, chips, chicken, apples, yoghurt]
+What they absolutely refuse: [e.g. fish, anything green, soup]
+Weekly food budget: [e.g. $60 / £40]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k7&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 8</span>
+          <span class="komenda-title">Emergency reschedule after the day falls apart</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k8">Act as a calm, practical crisis assistant.
+
+My day has just been derailed by something unexpected.
+
+Help me rebuild a realistic plan for the rest of the day, salvaging as much of the original schedule as possible.
+
+What happened: [Brief description, e.g. my child is sick and I need to stay home / the car broke down and I've lost transport for the day]
+Current time: [e.g. 11:00 am]
+What absolutely must still happen today: [e.g. pick up a prescription, send an urgent email]
+The rest of my original plan: [List what you had planned]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k8&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 9</span>
+          <span class="komenda-title">Last-minute weekend getaway</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k9">Act as an expert in spontaneous travel.
+
+We want to get away this weekend — leaving tomorrow.
+
+Suggest a specific destination within about 3 hours of our city and give us a ready-made 2-day plan.
+
+Include: where to stay (budget and comfortable options), where to eat (at least one spot with great local food), what to see and do, and what to throw in a bag.
+
+Our city: [e.g. London / Berlin / New York / Sydney]
+Who's coming: [e.g. couple / family with children]
+What we enjoy: [e.g. nature and hiking / culture and history / relaxation]
+Budget: [e.g. budget-friendly / mid-range]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k9&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 10</span>
+          <span class="komenda-title">The big monthly reset — plan the whole month at once</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k10">Act as a personal life planner.
+
+Help me plan the month ahead.
+
+Based on my information, create:
+
+1. A prioritised list of everything I need to get done this month
+
+2. A loose week-by-week skeleton (which week for what)
+
+3. The 3 most important things I absolutely cannot let slip through the cracks
+
+Month: [e.g. October 2026]
+Key dates and deadlines: [e.g. dentist on the 8th, sister's birthday on the 22nd, quarterly tax payment due by the 15th]
+Bigger projects or household tasks this month:
+[e.g. redecorate the spare room, organise a birthday party for the kids, sort out pension paperwork]
+What I want to protect for rest and myself:
+[e.g. gym twice a week, one evening per fortnight with no plans]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k10&#39;, this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ══ NEWSLETTER & REVIEW ══════════════════════════════════════════════ -->
+<div class="bonus-section">
+
+  <!-- Newsletter -->
+  <div class="bonus-card">
+    <div class="bonus-card-header">
+      <div class="bonus-card-icon">✉️</div>
+      <h3>Join the AI community and get your bonuses</h3>
+    </div>
+    <p>Sign up for my free newsletter to receive updates on new prompts, AI tool news, and upcoming books in the series.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" id="nl2-email" placeholder="Your best email address">
+      <button class="btn-newsletter" id="nl2-btn" onclick="nlSubmit(&#39;nl2&#39;)">Sign me up →</button>
+    </div>
+    <div id="nl2-msg" style="min-height:18px;margin-top:10px;font-size:0.82rem;"></div>
+    <p style="margin-top:8px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
+    <p style="margin-top:10px;margin-bottom:0;font-size:0.75rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#94A3B8;text-decoration:underline;">Privacy Policy</a> for details.</p>
+  </div>
+
+  <script>
+  async function nlSubmit(id) {
+    const email = document.getElementById(id+'-email').value.trim();
+    const msg   = document.getElementById(id+'-msg');
+    const btn   = document.getElementById(id+'-btn');
+    if (!email || !email.includes('@')) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.textContent = '';
+    try {
+      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter' })
+      });
+      if (r.ok) {
+        msg.style.color = '#22C55E';
+        msg.textContent = '✓ You\'re on the list!';
+        btn.textContent = '✓ Done!';
+        btn.style.background = 'var(--green-dim, #15803D)';
+        document.getElementById(id+'-email').value = '';
+      } else {
+        const d = await r.json();
+        msg.style.color = '#EF4444';
+        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
+        btn.disabled = false;
+        btn.textContent = 'Sign me up →';
+      }
+    } catch(e) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Connection error. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Sign me up →';
+    }
+  }
+  </script>
+  <div class="review-card">
+    <h3>Did my prompts make your life easier?</h3>
+    <p>Your opinion is the fuel for this series. If the knowledge in my ebooks saved you time, <span class="highlight">leaving a short, honest review on Amazon takes 30 seconds</span> — and helps me reach more people.</p>
+    <div class="review-buttons">
+      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM1_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 1</a>
+      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM2_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 2</a>
+      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM3_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 3</a>
+      <a class="btn-review" href="https://book2.aidorzeczy.com/LINK_DO_RECENZJI_TOM4_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 4</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-tomy">
+    <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com/">Book 1 — Communication &amp; Difficult Emails</a>
+    <a class="footer-tom-link current" href="https://book2.aidorzeczy.com/#">★ Book 2 — you are here</a>
+    <a class="footer-tom-link coming" href="https://book3.aidorzeczy.com/">Book 3 — Household Budget</a>
+    <a class="footer-tom-link coming" href="https://book4.aidorzeczy.com/">Book 4 — Movies &amp; What to Watch</a>
+  </div>
+  <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book2.aidorzeczy.com</p>
+  <p class="amazon-disclaimer" style="max-width:680px;margin:12px auto 0;">This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.</p>
+</footer>
+
+</div><!-- koniec #tresc -->
+
+<script>
+  // ── Newsletter na ekranie logowania ───────────────────────
+  async function nlLockSubmit() {
+    const emailEl = document.getElementById('nl-lock-email');
+    const msg     = document.getElementById('nl-lock-msg');
+    const btn     = document.getElementById('nl-lock-btn');
+    const email   = emailEl.value.trim();
+    if (!email || !email.includes('@')) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.textContent = '';
+    try {
+      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter (Book 2 lock screen)' })
+      });
+      if (r.ok) {
+        msg.style.color = '#22C55E';
+        msg.textContent = '✓ You\'re on the list!';
+        btn.textContent = '✓ Done!';
+        btn.style.background = '#15803D';
+        emailEl.value = '';
+      } else {
+        const d = await r.json();
+        msg.style.color = '#EF4444';
+        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
+        btn.disabled = false;
+        btn.textContent = 'Sign me up →';
+      }
+    } catch(e) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Connection error. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Sign me up →';
+    }
+  }
+
+  // Dostęp chroniony hashem SHA-256 — hasła nie są przechowywane w źródle
+  const _H = [
+    '3b0f6724023c56de9e8eb23060ff2c761b62023c3fc42ad389528835d19624f2',
+    'cbba6f7ec62d8e73e0068f65e1ddaf215c4685fa00feedf6e5bd3f05657c4891'
+  ];
+  const _K = 'b2_acc_v3';
+
+  async function _sha256(msg) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function sprawdzKod() {
+    const input = document.getElementById('kod-input');
+    const errorMsg = document.getElementById('error-msg');
+    const raw = input.value.trim().toUpperCase();
+    const variants = [raw, 'BOOK2-' + raw, raw.replace(/^BOOK2-/,'')];
+    const hashes = await Promise.all(variants.map(_sha256));
+    if (hashes.some(h => _H.includes(h))) {
+      localStorage.setItem(_K, '1');
+      odblokuj();
+    } else {
+      input.classList.add('error');
+      errorMsg.textContent = 'Incorrect code. Check the last page of your e-book.';
+      setTimeout(() => input.classList.remove('error'), 600);
+    }
+  }
+
+  function odblokuj() {
+    document.getElementById('ekran-logowania').style.display = 'none';
+    document.getElementById('tresc').style.display = 'block';
+  }
+
+  if (localStorage.getItem(_K) === '1') { odblokuj(); }
+
+  document.getElementById('kod-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sprawdzKod();
+  });
+
+  // ── Kopiowanie ──────────────────────────────────────────
+  const TOTAL = 10;
+  const copied = new Set();
+
+  function updateProgress() {
+    const n = copied.size;
+    document.getElementById('progressCount').textContent = n + ' / ' + TOTAL;
+    document.getElementById('progressFill').style.width = (n / TOTAL * 100) + '%';
+  }
+
+  function kopiuj(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const tekst = el.innerText;
+    const resetBtn = () => { btn.textContent = '📋 Copy prompt'; btn.classList.remove('success','error'); };
+
+    if (!navigator.clipboard) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = tekst; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        btn.textContent = '✓ Copied!'; btn.classList.add('success');
+        copied.add(id); updateProgress(); setTimeout(resetBtn, 2500);
+      } catch { btn.textContent='⚠ Error'; btn.classList.add('error'); setTimeout(resetBtn,3500); }
+      return;
+    }
+
+    navigator.clipboard.writeText(tekst)
+      .then(() => { btn.textContent='✓ Copied!'; btn.classList.add('success'); copied.add(id); updateProgress(); setTimeout(resetBtn,2500); })
+      .catch(() => { btn.textContent='⚠ Copy failed'; btn.classList.add('error'); setTimeout(resetBtn,3000); });
+  }
+
+  function setActive(el) {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const sections = document.querySelectorAll('.chapter');
+  const navItems = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(n => n.classList.toggle('active', n.getAttribute('href')==='#'+id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // Italicise [placeholder] text inside every prompt block
+  document.querySelectorAll('.komenda-tekst').forEach(function(el) {
+    el.innerHTML = el.innerHTML.replace(/(\[[^\]]*\])/g, '<em style="color:#93C5FD;font-style:italic;">$1</em>');
+  });
+</script>
+
+
+
+</body></html>
