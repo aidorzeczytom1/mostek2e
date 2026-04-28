@@ -430,14 +430,15 @@
 
     .komenda-head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      justify-content: space-between;
       padding: 14px 18px 10px;
       gap: 12px;
     }
 
     .komenda-label {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       flex: 1;
       min-width: 0;
@@ -454,15 +455,14 @@
       padding: 2px 8px;
       flex-shrink: 0;
       letter-spacing: 0.05em;
+      margin-top: 1px;
     }
 
     .komenda-title {
       font-size: 0.93rem;
       font-weight: 600;
       color: var(--white);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.4;
     }
 
     .komenda-body { padding: 0 18px 16px; }
@@ -478,6 +478,11 @@
       white-space: pre-wrap;
       margin-bottom: 12px;
       font-family: 'DM Sans', sans-serif;
+    }
+    
+    .komenda-tekst .placeholder {
+      color: #93C5FD;
+      font-style: italic;
     }
 
     .komenda-actions {
@@ -500,11 +505,12 @@
       cursor: pointer;
       transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
       font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.01em;
     }
 
     .btn-kopiuj:hover { background: var(--blue-light); box-shadow: 0 0 16px rgba(37,99,235,0.4); }
     .btn-kopiuj:active { transform: scale(0.96); }
-    .btn-kopiuj.success { background: var(--green-dim); }
+    .btn-kopiuj.success { background: var(--green-dim); box-shadow: 0 0 16px rgba(34,197,94,0.3); }
     .btn-kopiuj.error   { background: #991B1B; }
 
     .copy-hint { font-size: 0.78rem; color: var(--muted); }
@@ -801,7 +807,7 @@
           </a>
         </div>
         <style>@keyframes pointRight{0%,100%{transform:translateX(0)}50%{transform:translateX(9px)}}</style>
-        <p style="margin-top:10px;margin-bottom:0;font-size:0.72rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#64748B;text-decoration:underline;">Privacy Policy</a> for details.</p>
+        <p style="margin-top:10px;margin-bottom:0;font-size:0.72rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via MailerLite to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#64748B;text-decoration:underline;">Privacy Policy</a> for details.</p>
       </div>
     </div>
 
@@ -1237,12 +1243,12 @@ What I want to protect for rest and myself:
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:22px 0 14px;flex-wrap:wrap;">
       <span style="font-size:2.2rem;animation:pointRight 1.2s ease-in-out infinite;display:inline-block;">&#x1F449;</span>
       <a href="https://ebooks.aidorzeczy.com/#community" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;padding:14px 28px;border-radius:9px;box-shadow:0 4px 20px rgba(37,99,235,0.4);">
+         style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;padding:14px 28px;border-radius:9px;box-shadow:0 4px 20px rgba(37,99,235,0.4);">
         Sign me up →
       </a>
     </div>
     <p style="margin-top:4px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
-    <p style="margin-top:10px;margin-bottom:0;font-size:0.75rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#94A3B8;text-decoration:underline;">Privacy Policy</a> for details.</p>
+    <p style="margin-top:10px;margin-bottom:0;font-size:0.75rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via MailerLite to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#94A3B8;text-decoration:underline;">Privacy Policy</a> for details.</p>
   </div>
   <div class="review-card">
     <h3>Did my prompts make your life easier?</h3>
@@ -1329,15 +1335,38 @@ What I want to protect for rest and myself:
     const tekst = el.innerText;
     const resetBtn = () => { btn.textContent = '📋 Copy prompt'; btn.classList.remove('success','error'); };
 
-    if (!navigator.clipboard) {
+    if (!navigator.clipboard || window.isSecureContext === false) {
+      const ta = document.createElement('textarea');
+      ta.value = tekst;
+      
+      ta.style.position = 'fixed';
+      ta.style.top = '-99999px';
+      ta.style.left = '-99999px';
+      ta.style.width = '1px';
+      ta.style.height = '1px';
+      ta.style.padding = '0';
+      ta.style.border = 'none';
+      ta.style.outline = 'none';
+      ta.style.boxShadow = 'none';
+      ta.style.background = 'transparent';
+      
+      document.body.appendChild(ta);
+      
       try {
-        const ta = document.createElement('textarea');
-        ta.value = tekst; ta.style.position='fixed'; ta.style.opacity='0';
-        document.body.appendChild(ta); ta.focus(); ta.select();
-        document.execCommand('copy'); document.body.removeChild(ta);
-        btn.textContent = '✓ Copied!'; btn.classList.add('success');
-        copied.add(id); updateProgress(); setTimeout(resetBtn, 2500);
-      } catch { btn.textContent='⚠ Error'; btn.classList.add('error'); setTimeout(resetBtn,3500); }
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('success');
+        copied.add(id);
+        updateProgress();
+      } catch (err) {
+        btn.textContent = '⚠ Error — copy manually';
+        btn.classList.add('error');
+      } finally {
+        document.body.removeChild(ta);
+        setTimeout(resetBtn, 2500);
+      }
       return;
     }
 
