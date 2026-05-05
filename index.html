@@ -771,6 +771,99 @@
       from { background-position: 0% center; }
       to   { background-position: 200% center; }
     }
+
+    /* ── HAMBURGER NAV ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px 16px;
+      flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--muted);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--orange); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 4px;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    @media (max-width: 640px) {
+      .chapter-nav {
+        flex-wrap: wrap;
+        padding: 0;
+        justify-content: flex-start;
+      }
+      .nav-hamburger {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        padding: 12px 20px;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        padding: 4px 0 12px;
+        gap: 0;
+        overflow-x: visible;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links .nav-item {
+        padding: 12px 24px;
+        border-bottom: none;
+        border-left: 2px solid transparent;
+        font-size: 0.9rem;
+        white-space: normal;
+      }
+      .nav-links .nav-item.active {
+        border-left-color: var(--orange);
+        border-bottom-color: transparent;
+        color: var(--orange);
+      }
+      .nav-sep { display: none; }
+    }
+
+    /* ── HUB NEWSLETTER BTN ── */
+    .btn-newsletter-hub {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 11px 26px;
+      border-radius: 8px;
+      transition: background 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .btn-newsletter-hub:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 16px rgba(37,99,235,0.4);
+    }
+
   </style>
 </head>
 <body>
@@ -836,14 +929,19 @@
 </header>
 
 <nav class="chapter-nav" id="chapNav">
-  <a class="nav-item active" href="https://book2.aidorzeczy.com/#r1" onclick="setActive(this)">Ch. 1 — Kitchen</a>
-  <a class="nav-item" href="https://book2.aidorzeczy.com/#r2" onclick="setActive(this)">Ch. 2 — Meal Plan</a>
-  <a class="nav-item" href="https://book2.aidorzeczy.com/#r3" onclick="setActive(this)">Ch. 3 — Schedule</a>
-  <a class="nav-item" href="https://book2.aidorzeczy.com/#r4" onclick="setActive(this)">Ch. 4 — Travel</a>
-  <a class="nav-item" href="https://book2.aidorzeczy.com/#r5" onclick="setActive(this)">Ch. 5 — To-Do</a>
-  <div class="nav-sep"></div>
-  <a class="nav-item" href="https://book2.aidorzeczy.com/#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
-  <a class="nav-item" href="https://book2.aidorzeczy.com/#advanced" onclick="setActive(this)">Advanced</a>
+  <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a class="nav-item active" href="#r1" onclick="setActive(this);closeNav()">Ch. 1 — Kitchen</a>
+    <a class="nav-item" href="#r2" onclick="setActive(this);closeNav()">Ch. 2 — Meal Plan</a>
+    <a class="nav-item" href="#r3" onclick="setActive(this);closeNav()">Ch. 3 — Schedule</a>
+    <a class="nav-item" href="#r4" onclick="setActive(this);closeNav()">Ch. 4 — Travel</a>
+    <a class="nav-item" href="#r5" onclick="setActive(this);closeNav()">Ch. 5 — To-Do</a>
+    <div class="nav-sep"></div>
+    <a class="nav-item" href="#cheatsheet" onclick="setActive(this);closeNav()">Cheat Sheet</a>
+    <a class="nav-item" href="#advanced" onclick="setActive(this);closeNav()">Advanced</a>
+  </div>
 </nav>
 
 <main>
@@ -878,7 +976,7 @@ Keep it simple — maximum 30 minutes from start to plate.
 
 Give me: the name of the dish, a list of ingredients with quantities, and numbered cooking steps.
 
-Ingredients I have: [List what's in your fridge or cupboards, e.g. chicken breast, rice, onion, garlic, tinned tomatoes]
+Ingredients I have: [List what's in your fridge or cupboards, e.g. chicken breast, rice, onion, garlic, canned tomatoes]
 
 Number of people: [e.g. 2 / family of 4]
 
@@ -963,7 +1061,7 @@ Time I wake up: [e.g. 7:00 am]
 Time I want to wrap everything up by: [e.g. 8:00 pm]
 
 My tasks for today (write them in any order, as messily as you like):
-[e.g. drop the car at the garage, call the doctor's surgery, send an important email, do the grocery shopping, pick up the kids from school at 3:30 pm, make dinner]
+[e.g. drop the car at the garage, call the doctor's office, send an important email, do the grocery shopping, pick up the kids from school at 3:30 pm, make dinner]
 
 Any fixed commitments or blocks I can't move?
 [e.g. work meeting 10:00–11:30 am / or: none, I'm flexible today]</div>
@@ -1135,7 +1233,7 @@ Introduce anything new very gently — the goal is meals they'll actually eat wi
 Child's age: [e.g. 7 years old]
 What they like: [e.g. pasta, chips, chicken, apples, yoghurt]
 What they absolutely refuse: [e.g. fish, anything green, soup]
-Weekly food budget: [e.g. $60 / £40]</div>
+Weekly food budget: [e.g. $60]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj(&#39;k7&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -1237,27 +1335,25 @@ What I want to protect for rest and myself:
   <div class="bonus-card">
     <div class="bonus-card-header">
       <div class="bonus-card-icon">✉️</div>
-      <h3>Join the AI community and get your bonuses</h3>
+      <h3>Join the AI community &amp; get your bonuses</h3>
     </div>
-    <p>Sign up for my free newsletter to receive updates on new prompts, AI tool news, and upcoming books in the series.</p>
-    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:22px 0 14px;flex-wrap:wrap;">
-      <span style="font-size:2.2rem;animation:pointRight 1.2s ease-in-out infinite;display:inline-block;">&#x1F449;</span>
-      <a href="https://ebooks.aidorzeczy.com/#community" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;padding:14px 28px;border-radius:9px;box-shadow:0 4px 20px rgba(37,99,235,0.4);">
-        Sign me up →
+    <p>
+      Get practical AI tips, updates on new books, and exclusive discounts — straight to your inbox.<br>
+      <small>No spam. Unsubscribe at any time.</small>
+    </p>
+    <div style="text-align:center;margin-top:4px;">
+      <a class="btn-newsletter-hub" href="https://newsletter.aidorzeczy.com/" target="_blank" rel="noopener noreferrer">
+        👉 Sign me up &rarr;
       </a>
     </div>
-    <p style="margin-top:4px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
-    <p style="margin-top:10px;margin-bottom:0;font-size:0.75rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via MailerLite to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#94A3B8;text-decoration:underline;">Privacy Policy</a> for details.</p>
   </div>
   <div class="review-card">
-    <h3>Did my prompts make your life easier?</h3>
-    <p>Your opinion is the fuel for this series. If the knowledge in my ebooks saved you time, <span class="highlight">leaving a short, honest review on Amazon takes 30 seconds</span> — and helps me reach more people.</p>
+    <h3>📚 More books in the series</h3>
+    <p>
+      Organisation, budgeting, movies, parenting, gifts and more — find the full series, buy links, and one-click review links at:
+    </p>
     <div class="review-buttons">
-      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 1</a>
-      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 2</a>
-      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 3</a>
-      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-4-6" target="_blank" rel="noopener">⭐ Review Book 4</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com" target="_blank" rel="noopener">🌐 ebooks.aidorzeczy.com</a>
     </div>
   </div>
 
@@ -1373,6 +1469,20 @@ What I want to protect for rest and myself:
     navigator.clipboard.writeText(tekst)
       .then(() => { btn.textContent='✓ Copied!'; btn.classList.add('success'); copied.add(id); updateProgress(); setTimeout(resetBtn,2500); })
       .catch(() => { btn.textContent='⚠ Copy failed'; btn.classList.add('error'); setTimeout(resetBtn,3000); });
+  }
+
+  /* ── HAMBURGER NAV ── */
+  function toggleNav() {
+    const btn = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+  }
+  function closeNav() {
+    const btn = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    btn.classList.remove('open');
+    links.classList.remove('open');
   }
 
   function setActive(el) {
